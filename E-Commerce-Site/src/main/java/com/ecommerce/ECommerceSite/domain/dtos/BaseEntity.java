@@ -1,4 +1,4 @@
-package com.ecommerce.ECommerceSite.dtos;
+package com.ecommerce.ECommerceSite.domain.dtos;
 
 import javax.persistence.*;
 
