@@ -1,5 +1,6 @@
 package com.ecommerce.ECommerceSite.domain.dtos;
 
+import com.ecommerce.ECommerceSite.controllers.responses.CategoryResponse;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,4 +20,13 @@ public class Category extends BaseEntity{
 
     @Column(name = "image_url")
     private String imageUrl;
+
+    public Category(CategoryResponse category){
+        this.categoryName = category.getCategoryName();
+        this.description = category.getDescription();
+        this.imageUrl = category.getImageUrl();
+    }
+    public Category() {
+
+    }
 }

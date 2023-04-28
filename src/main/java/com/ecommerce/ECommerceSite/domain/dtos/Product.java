@@ -1,6 +1,5 @@
 package com.ecommerce.ECommerceSite.domain.dtos;
 
-import com.ecommerce.ECommerceSite.domain.dtos.BaseEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
