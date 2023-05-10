@@ -8,6 +8,8 @@ import com.ecommerce.ECommerceSite.exceptions.DuplicateEntityException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -31,5 +33,15 @@ public class CategoryService {
         categoryEntity = categoryRepository.save(categoryEntity);
         //Returning a new "CategoryResponse" object created with the data from the saved "Category" object
         return new CategoryResponse(categoryEntity);
+    }
+
+    public List<CategoryResponse> getAllCategories(){
+        //creating a CategoryResponse list from repository
+        var categoryList = this.categoryRepository.findAll();
+        var categoryResponseList = new ArrayList<CategoryResponse>();
+        for (Category category: categoryList){
+            categoryResponseList.add(new CategoryResponse(category));
+        }
+        return categoryResponseList;
     }
 }
