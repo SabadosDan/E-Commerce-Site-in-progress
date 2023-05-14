@@ -1,6 +1,7 @@
 package com.ecommerce.ECommerceSite.domain.dtos;
 
 import com.ecommerce.ECommerceSite.controllers.responses.CategoryResponse;
+import com.ecommerce.ECommerceSite.controllers.responses.ProductResponse;
 import com.sun.xml.bind.v2.TODO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,8 +32,19 @@ public class Product extends BaseEntity {
     @Column(name = "image_url")
     private String imageUrl;
 
-    @Column(name = "is_active")
-    private Boolean isActive;
+    @Column(name = "quantity")
+    private Integer quantityInStock;
 
-    //TODO public Product(ProductResponse product){}
+    @Column(name = "in_Stock")
+    private Boolean inStock;
+
+    public Product(ProductResponse productResponse){
+        this.name = productResponse.getName();
+        this.description = productResponse.getDescription();
+        this.price = productResponse.getPrice();
+        this.category = productResponse.getCategory();
+        this.imageUrl = productResponse.getImageUrl();
+        this.quantityInStock = productResponse.getQuantityInStock();
+        this.inStock = productResponse.getQuantityInStock() > 0;
+    }
 }

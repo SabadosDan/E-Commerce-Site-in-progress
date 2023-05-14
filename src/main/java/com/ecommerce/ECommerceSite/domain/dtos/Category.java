@@ -21,10 +21,10 @@ public class Category extends BaseEntity{
     @Column(name = "image_url")
     private String imageUrl;
 
-    public Category(CategoryResponse category){
-        this.categoryName = category.getCategoryName();
-        this.description = category.getDescription();
-        this.imageUrl = category.getImageUrl();
+    public Category(CategoryResponse categoryResponse){
+        this.categoryName = categoryResponse.getCategoryName();
+        this.description = categoryResponse.getDescription();
+        this.imageUrl = categoryResponse.getImageUrl();
     }
     public Category() {
 

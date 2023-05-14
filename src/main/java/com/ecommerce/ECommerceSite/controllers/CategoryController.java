@@ -3,6 +3,7 @@ package com.ecommerce.ECommerceSite.controllers;
 import com.ecommerce.ECommerceSite.controllers.responses.BaseResponse;
 import com.ecommerce.ECommerceSite.controllers.responses.CategoryResponse;
 import com.ecommerce.ECommerceSite.controllers.responses.ErrorResponse;
+import com.ecommerce.ECommerceSite.controllers.responses.ListCategoriesResponse;
 import com.ecommerce.ECommerceSite.exceptions.DuplicateEntityException;
 import com.ecommerce.ECommerceSite.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,5 +34,7 @@ public class CategoryController {
     }
 
     @GetMapping(value = "/all_categories")
-    public List<CategoryResponse> getAllCategories(){return categoryService.getAllCategories();}
+    public ResponseEntity<BaseResponse> getAllCategories(){
+        return new ResponseEntity<>(categoryService.getAllCategories(),HttpStatus.OK);
+    }
 }

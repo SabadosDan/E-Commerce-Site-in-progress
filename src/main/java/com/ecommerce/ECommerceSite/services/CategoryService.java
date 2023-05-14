@@ -2,6 +2,7 @@ package com.ecommerce.ECommerceSite.services;
 
 import com.ecommerce.ECommerceSite.controllers.CategoryController;
 import com.ecommerce.ECommerceSite.controllers.responses.CategoryResponse;
+import com.ecommerce.ECommerceSite.controllers.responses.ListCategoriesResponse;
 import com.ecommerce.ECommerceSite.domain.dtos.Category;
 import com.ecommerce.ECommerceSite.domain.repositories.CategoryRepository;
 import com.ecommerce.ECommerceSite.exceptions.DuplicateEntityException;
@@ -35,13 +36,13 @@ public class CategoryService {
         return new CategoryResponse(categoryEntity);
     }
 
-    public List<CategoryResponse> getAllCategories(){
+    public ListCategoriesResponse getAllCategories(){
         //creating a CategoryResponse list from repository
-        var categoryList = this.categoryRepository.findAll();
-        var categoryResponseList = new ArrayList<CategoryResponse>();
+        List<Category> categoryList = this.categoryRepository.findAll();
+        List<CategoryResponse> categoryResponses = new ArrayList<>();
         for (Category category: categoryList){
-            categoryResponseList.add(new CategoryResponse(category));
+            categoryResponses.add(new CategoryResponse(category));
         }
-        return categoryResponseList;
+        return new ListCategoriesResponse(categoryResponses);
     }
 }
