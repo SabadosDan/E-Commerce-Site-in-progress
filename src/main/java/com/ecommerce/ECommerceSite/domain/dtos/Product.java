@@ -2,6 +2,7 @@ package com.ecommerce.ECommerceSite.domain.dtos;
 
 import com.ecommerce.ECommerceSite.controllers.responses.CategoryResponse;
 import com.ecommerce.ECommerceSite.controllers.responses.ProductResponse;
+import com.ecommerce.ECommerceSite.domain.repositories.ProductRepository;
 import com.sun.xml.bind.v2.TODO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -38,13 +39,23 @@ public class Product extends BaseEntity {
     @Column(name = "in_Stock")
     private Boolean inStock;
 
-    public Product(ProductResponse productResponse){
-        this.name = productResponse.getName();
-        this.description = productResponse.getDescription();
-        this.price = productResponse.getPrice();
-        this.category = productResponse.getCategory();
-        this.imageUrl = productResponse.getImageUrl();
-        this.quantityInStock = productResponse.getQuantityInStock();
-        this.inStock = productResponse.getQuantityInStock() > 0;
+    public Product(String name, String description, BigDecimal price,
+                   Category category, String imageUrl, Integer quantityInStock) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.category = category;
+        this.imageUrl = imageUrl;
+        this.quantityInStock = quantityInStock;
+        this.inStock = this.quantityInStock > 0;
     }
+//    public Product(ProductResponse productResponse){
+//        this.name = productResponse.getName();
+//        this.description = productResponse.getDescription();
+//        this.price = productResponse.getPrice();
+//        this.category = category;
+//        this.imageUrl = productResponse.getImageUrl();
+//        this.quantityInStock = productResponse.getQuantityInStock();
+//        this.inStock = productResponse.getQuantityInStock() > 0;
+//    }
 }

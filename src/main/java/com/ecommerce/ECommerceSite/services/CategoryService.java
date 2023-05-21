@@ -22,9 +22,9 @@ public class CategoryService {
     }
 
     public CategoryResponse createCategory(CategoryResponse categoryResponse) throws DuplicateEntityException {
-        Optional<Category> category = categoryRepository.findByCategoryName(categoryResponse.getCategoryName());
+        Category category = categoryRepository.findByCategoryName(categoryResponse.getCategoryName());
 
-        if (category.isPresent()) {
+        if (category != null) {
             throw new DuplicateEntityException("Duplicate category with name " + categoryResponse.getCategoryName());
         }
         //Creating a new "Category" object with the data from "categoryResponse"

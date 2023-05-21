@@ -10,24 +10,30 @@ public class ProductResponse extends BaseResponse{
     private String name;
     private String description;
     private BigDecimal price;
-    private Category category; //TODO schimba in category name -> schimbari in constructeri -> schimbari in createProduct <> Nevoie de findByName pt caterogy
+    private String categoryName;
     private String imageUrl;
     private Integer quantityInStock;
 
     public ProductResponse(){};
 
-    public ProductResponse(Long id, String name, String description, BigDecimal price, Category category, String imageUrl, Integer quantityInStock) {
+    public ProductResponse(Long id, String name, String description, BigDecimal price, String categoryName, String imageUrl, Integer quantityInStock) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
-        this.category = category;
+        this.categoryName = categoryName;
         this.imageUrl = imageUrl;
         this.quantityInStock = quantityInStock;
     }
 
     public ProductResponse(Product product) {
-        super(); //TODO
+        this.id= product.getId();
+        this.name = product.getName();
+        this.description = product.getDescription();
+        this.price = product.getPrice();
+        this.categoryName = product.getCategory().getCategoryName();
+        this.imageUrl = product.getImageUrl();
+        this.quantityInStock = product.getQuantityInStock();
     }
 
     public String getImageUrl() {
@@ -78,11 +84,11 @@ public class ProductResponse extends BaseResponse{
         this.price = price;
     }
 
-    public Category getCategory() {
-        return category;
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 }

@@ -26,7 +26,5 @@ public class Category extends BaseEntity{
         this.description = categoryResponse.getDescription();
         this.imageUrl = categoryResponse.getImageUrl();
     }
-    public Category() {
-
-    }
+    public Category() {}
 }
