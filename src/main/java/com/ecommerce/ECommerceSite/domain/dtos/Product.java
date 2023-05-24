@@ -49,13 +49,4 @@ public class Product extends BaseEntity {
         this.quantityInStock = quantityInStock;
         this.inStock = this.quantityInStock > 0;
     }
-//    public Product(ProductResponse productResponse){
-//        this.name = productResponse.getName();
-//        this.description = productResponse.getDescription();
-//        this.price = productResponse.getPrice();
-//        this.category = category;
-//        this.imageUrl = productResponse.getImageUrl();
-//        this.quantityInStock = productResponse.getQuantityInStock();
-//        this.inStock = productResponse.getQuantityInStock() > 0;
-//    }
 }

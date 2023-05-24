@@ -4,7 +4,6 @@ import com.ecommerce.ECommerceSite.controllers.requests.UpdateStockRequest;
 import com.ecommerce.ECommerceSite.controllers.responses.ListProductsResponse;
 import com.ecommerce.ECommerceSite.controllers.responses.ProductResponse;
 import com.ecommerce.ECommerceSite.controllers.responses.UpdateStockResponse;
-import com.ecommerce.ECommerceSite.domain.dtos.Category;
 import com.ecommerce.ECommerceSite.domain.dtos.Product;
 import com.ecommerce.ECommerceSite.domain.repositories.CategoryRepository;
 import com.ecommerce.ECommerceSite.domain.repositories.ProductRepository;
@@ -14,7 +13,6 @@ import com.ecommerce.ECommerceSite.mappers.ProductMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.NotActiveException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -70,6 +68,9 @@ public class ProductService {
         Integer updatedQuantity = oldQuantity + updateStockRequest.getQuantityToAddInStock();
 
         product.setQuantityInStock(updatedQuantity);
+        if (updatedQuantity == 0){
+            product.setInStock(Boolean.FALSE);
+        }
         productRepository.save(product);
 
         return new UpdateStockResponse("Stock added succesfully! The new stock of "
