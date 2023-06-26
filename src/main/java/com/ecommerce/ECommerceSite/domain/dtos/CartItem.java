@@ -15,7 +15,7 @@ public class CartItem extends BaseEntity{
 
     @Column(name = "price")
     private BigDecimal price;  // total price/ if quantity = 1 -> price = product.getPrice();
-                                            // else price = product.getPrice() * quantity
+                                            // else price = product.getPrice() * quantity;
 
 
     public CartItem(Product product, Integer quantity, BigDecimal price) {
