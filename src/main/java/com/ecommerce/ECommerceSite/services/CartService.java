@@ -10,6 +10,8 @@ import com.ecommerce.ECommerceSite.domain.repositories.CartRepository;
 import com.ecommerce.ECommerceSite.domain.repositories.ProductRepository;
 import com.ecommerce.ECommerceSite.domain.repositories.UserRepository;
 import com.ecommerce.ECommerceSite.exceptions.NotFoundException;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -65,11 +67,19 @@ public class CartService {
         cartItem.setQuantity(quantity);
         cartItem.setPrice(price);
 
-        // TODO User user = getCurrentUser();
-        //addCartItem(user, cartItem);
+        User user = getCurrentUser();
+        addCartItem(user, cartItem);
 
-        //userRepository.save(user);
+        userRepository.save(user);
 
         return new AddToCartResponse(product.getName() + " added succesfully to the cart! ");
+    }
+
+    public User getCurrentUser(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.getPrincipal() instanceof User){
+            return (User) authentication.getPrincipal();
+        }
+        return null;
     }
 }
